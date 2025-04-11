@@ -37,5 +37,4 @@ public class JoinController {
         securityUserMapper.insertUser(newUser);
         return "redirect:/login";
     }
-
 }
