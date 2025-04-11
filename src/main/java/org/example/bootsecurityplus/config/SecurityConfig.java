@@ -21,11 +21,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomUserDetailsService customUserDetailsService) throws Exception {
         http.
                 authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/join", "/login").permitAll() // '/'는 모두에게 허용이 되어 있다
-                        // 가입, 로그인
-                        .requestMatchers("/admin").hasRole("ADMIN") // ADMIN
-                        .requestMatchers("/user").hasRole("USER") // USER
-                        .anyRequest().authenticated()
+                                .requestMatchers("/", "/join", "/login").permitAll() // '/'는 모두에게 허용이 되어 있다
+                                // 가입, 로그인
+//                        .requestMatchers("/admin").hasRole("ADMIN") // ADMIN
+//                        .requestMatchers("/user").hasRole("USER") // USER
+                                .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN
+                                .requestMatchers("/user/**").hasRole("USER") // USER
+                                .anyRequest().authenticated()
                 )
 //                .formLogin(Customizer.withDefaults()) // 기본을 쓰자
                 .formLogin(form -> form
