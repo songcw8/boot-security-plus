@@ -13,6 +13,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 //    @GetMapping("/admin")
 //    public String admin(Model model) {
 //        model.addAttribute("msg", "어드민입니다");
@@ -25,8 +30,4 @@ public class IndexController {
 //        return "index";
 //    }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
 }

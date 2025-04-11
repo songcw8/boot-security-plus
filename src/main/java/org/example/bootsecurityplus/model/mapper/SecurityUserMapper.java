@@ -9,7 +9,7 @@ public interface SecurityUserMapper {
     SecurityUser findByUsername(String username);
 
     @Insert("INSERT INTO SECURITY_USER(username, password, role) values (#{username}, #{password}, #{role})")
-    @Options(useGeneratedKeys = true, keyProperty = "userId")
+    //@Options(useGeneratedKeys = true, keyProperty = "userId")
     void insertUser(SecurityUser user);
 
 }

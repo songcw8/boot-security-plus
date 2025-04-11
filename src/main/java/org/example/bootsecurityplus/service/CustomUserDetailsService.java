@@ -1,6 +1,5 @@
 package org.example.bootsecurityplus.service;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.example.bootsecurityplus.model.domain.SecurityUser;
 import org.example.bootsecurityplus.model.mapper.SecurityUserMapper;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 
 @Service

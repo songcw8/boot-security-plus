@@ -17,6 +17,7 @@ import javax.security.auth.login.LoginContext;
 
 @Configuration
 public class SecurityConfig {
+    /*
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomUserDetailsService customUserDetailsService) throws Exception {
         http.
@@ -37,6 +38,26 @@ public class SecurityConfig {
 //                .logout(Customizer.withDefaults()); // 기본을 쓰자
                 .logout(logout -> logout.permitAll())
                 .userDetailsService(customUserDetailsService); // 기본을 쓰자
+        return http.build();
+    } */
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomUserDetailsService customUserDetailsService) throws Exception {
+        http.
+                authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/", "/join", "/login", "/welcome").permitAll() // welcome 페이지 접근 허용
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("USER")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/welcome", true) // 로그인 성공 시 항상 welcome 페이지로 이동
+                        .failureUrl("/login?error=true") // 실패 시 에러 메시지와 함께 로그인 페이지로
+                        .permitAll()
+                )
+                .logout(logout -> logout.permitAll())
+                .userDetailsService(customUserDetailsService);
         return http.build();
     }
 

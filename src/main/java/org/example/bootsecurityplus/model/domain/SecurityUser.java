@@ -1,8 +1,6 @@
 package org.example.bootsecurityplus.model.domain;
 
-import java.time.LocalDateTime;
-
-public record SecurityUser (
+public record SecurityUser(
         Long userId, // null
         String username,
         String password,

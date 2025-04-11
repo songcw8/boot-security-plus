@@ -1,3 +1,32 @@
+<!--<!doctype html>-->
+<!--<html lang="ko" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <title>시큐리티 실습</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>회원가입</h2>-->
+<!--<p th:text="${error}"></p>-->
+<!--<form th:action="@{/join}" method="post">-->
+<!--    <section>-->
+<!--        <label>-->
+<!--            유저이름 : <input th:name="username" required>-->
+<!--        </label>-->
+<!--    </section>-->
+<!--    <section>-->
+<!--        <label>-->
+<!--            비밀번호 : <input type="password" th:name="password" required>-->
+<!--        </label>-->
+<!--    </section>-->
+<!--    <button>가입</button>-->
+<!--</form>-->
+<!--<section><a th:href="@{/login}">로그인</a></section>-->
+<!--</body>-->
+<!--</html>-->
+
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,24 +34,135 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>시큐리티 실습</title>
+    <title>회원가입 - 시큐리티 실습</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .join-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #afe361;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+        .join-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .join-header h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3C1E1E;
+            margin: 0;
+        }
+        .join-form {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #3C1E1E;
+        }
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            color: #3C1E1E;
+            background-color: #f9f9f9;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #afe361;
+            box-shadow: 0 0 0 2px rgba(175, 227, 97, 0.3);
+        }
+        .join-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #3C1E1E;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        .join-btn:hover {
+            background-color: #2B1717;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #3C1E1E;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .user-icon {
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-<h2>회원가입</h2>
-<p th:text="${error}"></p>
-<form th:action="@{/join}" method="post">
-    <section>
-        <label>
-            유저이름 : <input th:name="username" required>
-        </label>
-    </section>
-    <section>
-        <label>
-            비밀번호 : <input type="password" th:name="password" required>
-        </label>
-    </section>
-    <button>가입</button>
-</form>
-<section><a th:href="@{/login}">로그인</a></section>
+<div class="join-container">
+    <div class="join-header">
+        <div class="user-icon">👤</div>
+        <h2>회원가입</h2>
+    </div>
+
+    <div class="join-form">
+        <!-- 에러 메시지 표시 -->
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+        <form th:action="@{/join}" method="post">
+            <div class="form-group">
+                <label for="username">유저이름</label>
+                <input type="text" id="username" th:name="username" placeholder="사용할 아이디를 입력하세요" required class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" th:name="password" placeholder="비밀번호를 입력하세요" required class="input-field">
+            </div>
+
+            <button type="submit" class="join-btn">가입</button>
+        </form>
+
+        <div class="login-link">
+            <a th:href="@{/login}">이미 계정이 있으신가요? 로그인</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
