@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,6 +8,14 @@
     <title>시큐리티 실습</title>
 </head>
 <body>
-    <p th:text="${msg}"></p>
+<p th:text="${msg}"></p>
+<nav>
+    <a th:href="@{/login}">로그인</a>
+    <a th:href="@{/join}">회원가입</a>
+</nav>
+<section>
+    <a th:href="@{/user}">유저</a>
+    <a th:href="@{/admin}">관리자</a>
+</section>
 </body>
 </html>
