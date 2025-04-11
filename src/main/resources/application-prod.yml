@@ -8,6 +8,13 @@ spring:
     driver-class-name: org.postgresql.Driver # PostgreSQL 드라이버 클래스 이름
   # 시큐리티
 #  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            client-id: {}
+#            client-secret: {}
+#  security:
 #    user:
 #      name: ${SECURITY_NAME}
 #      password: ${SECURITY_PASSWORD}
@@ -15,5 +22,5 @@ spring:
 logging:
   level:
     #    org.example.bootsecurity.model.mapper: DEBUG # mapper 패키지의 로깅 레벨을 DEBUG로 설정 (DEV)
-    org.example.bootsecurity.model.mapper: ERROR # mapper 패키지의 로깅 레벨을 ERROR로 설정
+    org.example.bootsecurityplus.model.mapper: ERROR # mapper 패키지의 로깅 레벨을 ERROR로 설정
     # 너무 쓸데없는 많은 로그 방지
